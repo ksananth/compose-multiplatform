@@ -13,4 +13,12 @@ internal class AddItemViewModel : ViewModel() {
         val updatedList = _items.value + newItem
         _items.value = updatedList
     }
+
+    fun onEditClicked() {
+        TODO("Not yet implemented")
+    }
+
+    fun onDeleteClicked(id: Int) {
+        _items.value = _items.value.filter { it.id != id }
+    }
 }

@@ -32,7 +32,7 @@ internal fun DynamicFormScreen(viewModel: AddItemViewModel = koinInject(),onNavi
             contentPadding = PaddingValues(16.dp)
         ) {
             itemsIndexed(items) { _, item ->
-                ListItemView(item = item)
+                ListItemView(item = item, viewModel = viewModel)
             }
 
             item {
@@ -83,7 +83,7 @@ internal fun DynamicFormScreen(viewModel: AddItemViewModel = koinInject(),onNavi
 }
 
 @Composable
-fun ListItemView(item: ListItem) {
+internal fun ListItemView(item: ListItem, viewModel: AddItemViewModel) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -140,12 +140,14 @@ fun ListItemView(item: ListItem) {
 
             Row(
                 modifier = Modifier
-                    .align(Alignment.TopEnd) // Align to the top-right corner
+                    .align(Alignment.TopEnd)
                     .padding(16.dp),
                 horizontalArrangement = Arrangement.End
             ) {
                 IconButton(
-                    onClick = {}
+                    onClick = {
+                        viewModel.onEditClicked()
+                    }
                 ) {
                     Icon(
                         imageVector = Icons.Default.Edit,
@@ -155,7 +157,9 @@ fun ListItemView(item: ListItem) {
                 }
 
                 IconButton(
-                    onClick = {}
+                    onClick = {
+                        viewModel.onDeleteClicked(item.id)
+                    }
                 ) {
                     Icon(
                         imageVector = Icons.Default.Delete,
