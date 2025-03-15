@@ -1,0 +1,27 @@
+[versions]
+androidx-lifecycle = "2.8.4"
+compose-multiplatform = "1.7.0"
+junit = "4.13.2"
+kotlin = "2.1.0"
+kotlinx-coroutines = "1.10.1"
+koin = "3.2.0"
+coilCompose = "2.7.0"
+coilCompose3 = "3.0.4"
+
+[libraries]
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
+koin = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
+coilCompose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilCompose" }
+coil3-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coilCompose3" }
+coil3-network-ktor = { group = "io.coil-kt.coil3", name = "coil-network-ktor3", version.ref = "coilCompose3" }
+
+
+[plugins]
+composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
