@@ -208,7 +208,7 @@ fun AddItemForm(
                     onClick = {
                         if (itemName.isNotBlank()) {
                             val newItem = ListItem(
-                                id = Random.nextInt(),
+                                id = item.id,
                                 name = itemName,
                                 zeplinSectionUrlAndroid = zeplinSectionNameAndroid,
                                 zeplinSectionUrlIos = zeplinSectionNameAndroid,
