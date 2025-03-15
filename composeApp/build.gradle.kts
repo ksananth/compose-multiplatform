@@ -47,24 +47,17 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.coil3.compose)
             implementation(libs.coil3.network.ktor)
+
+            implementation("io.insert-koin:koin-core:3.5.0")
+            implementation("io.insert-koin:koin-compose:1.0.1")
         }
 
         val jvmMain by creating {
             dependsOn(commonMain.get())
             dependencies {
-                // Koin for JVM (desktop)
-                implementation("io.insert-koin:koin-core:3.5.0")
-                implementation("io.insert-koin:koin-compose:1.0.1")
-                implementation("io.insert-koin:koin-core-coroutines:3.5.0")
+
             }
         }
-
-        val wasmJsMain by getting {
-            dependencies {
-                // Add Wasm/JS-specific dependencies here
-            }
-        }
-
 
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
