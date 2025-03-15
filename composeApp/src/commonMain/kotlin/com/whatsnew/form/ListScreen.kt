@@ -18,10 +18,9 @@ import org.koin.compose.koinInject
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-internal fun DynamicFormScreen(viewModel: AddItemViewModel = koinInject(),onNavigate: () -> Unit) {
+internal fun DynamicFormScreen(viewModel: AddItemViewModel = koinInject(), onNavigate: () -> Unit) {
     val items by viewModel.items.collectAsState()
-
-    var showForm by remember { mutableStateOf(false) }
+    val showForm by viewModel.showForm.collectAsState()
 
     Column(
         modifier = Modifier
@@ -41,7 +40,7 @@ internal fun DynamicFormScreen(viewModel: AddItemViewModel = koinInject(),onNavi
                         .fillMaxWidth()
                         .padding(8.dp),
                     elevation = 4.dp,
-                    onClick = { showForm = true }
+                    onClick = { viewModel.addNewWhatsNew() }
                 ) {
                     Box(
                         modifier = Modifier
@@ -56,13 +55,15 @@ internal fun DynamicFormScreen(viewModel: AddItemViewModel = koinInject(),onNavi
         }
 
 
-        if (showForm) {
+        showForm?.let {
             AddItemForm(
+                item = it,
                 onAddItem = { newItem ->
                     viewModel.addItem(newItem)
-                    showForm = false
                 },
-                onDismiss = { showForm = false }
+                onDismiss = {
+                    viewModel.onDismissDialog()
+                }
             )
         }
     }
@@ -146,7 +147,7 @@ internal fun ListItemView(item: ListItem, viewModel: AddItemViewModel) {
             ) {
                 IconButton(
                     onClick = {
-                        viewModel.onEditClicked()
+                        viewModel.onEditClicked(item.id)
                     }
                 ) {
                     Icon(

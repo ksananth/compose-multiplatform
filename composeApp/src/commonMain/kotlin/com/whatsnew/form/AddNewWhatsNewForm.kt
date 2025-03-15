@@ -30,26 +30,27 @@ import kotlin.random.Random
 
 @Composable
 fun AddItemForm(
+    item : ListItem,
     onAddItem: (ListItem) -> Unit,
     onDismiss: () -> Unit
 ) {
-    var itemName by remember { mutableStateOf("") }
-    var zeplinSectionNameAndroid by remember { mutableStateOf("") }
-    var zeplinSectionNameIos by remember { mutableStateOf("") }
-    var title by remember { mutableStateOf("") }
-    var description by remember { mutableStateOf("") }
+    var itemName by remember { mutableStateOf(item.name) }
+    var zeplinSectionNameAndroid by remember { mutableStateOf(item.zeplinSectionUrlAndroid) }
+    var zeplinSectionNameIos by remember { mutableStateOf(item.zeplinSectionUrlIos) }
+    var title by remember { mutableStateOf(item.title) }
+    var description by remember { mutableStateOf(item.description) }
 
-    var enChecked by remember { mutableStateOf(true) }
-    var frChecked by remember { mutableStateOf(true) }
-    var nlChecked by remember { mutableStateOf(true) }
-    var deChecked by remember { mutableStateOf(true) }
+    var enChecked by remember { mutableStateOf(item.languages.contains(Language.EN)) }
+    var frChecked by remember { mutableStateOf(item.languages.contains(Language.FR)) }
+    var nlChecked by remember { mutableStateOf(item.languages.contains(Language.NL)) }
+    var deChecked by remember { mutableStateOf(item.languages.contains(Language.DE)) }
 
-    var frBrandChecked by remember { mutableStateOf(true) }
-    var knBrandChecked by remember { mutableStateOf(true) }
-    var hbBrandChecked by remember { mutableStateOf(true) }
+    var frBrandChecked by remember { mutableStateOf(item.brands.contains(Brand.FR)) }
+    var knBrandChecked by remember { mutableStateOf(item.brands.contains(Brand.KN)) }
+    var hbBrandChecked by remember { mutableStateOf(item.brands.contains(Brand.HB)) }
 
-    var iosChecked by remember { mutableStateOf(true) }
-    var androidChecked by remember { mutableStateOf(true) }
+    var iosChecked by remember { mutableStateOf(item.platforms.contains(Platform.IOS)) }
+    var androidChecked by remember { mutableStateOf(item.platforms.contains(Platform.ANDROID)) }
 
     Dialog(onDismissRequest = onDismiss) {
         Surface(

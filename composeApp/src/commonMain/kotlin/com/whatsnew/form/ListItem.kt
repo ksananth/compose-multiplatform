@@ -1,5 +1,7 @@
 package com.whatsnew.form
 
+import kotlin.random.Random
+
 data class ListItem(
     val id: Int,
     val name: String,
@@ -10,7 +12,21 @@ data class ListItem(
     val languages: List<Language>,
     val brands: List<Brand>,
     val platforms: List<Platform>
-)
+) {
+    companion object {
+        fun empty() = ListItem(
+            Random.nextInt(),
+            "",
+            "",
+            "",
+            "",
+            "",
+            Language.entries,
+            Brand.entries,
+            Platform.entries
+        )
+    }
+}
 
 enum class Brand {
     FR, KN, HB
