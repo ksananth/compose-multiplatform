@@ -48,8 +48,8 @@ kotlin {
             implementation(libs.coil3.compose)
             implementation(libs.coil3.network.ktor)
 
-            implementation("io.insert-koin:koin-core:3.5.0")
-            implementation("io.insert-koin:koin-compose:1.0.1")
+            api(libs.koin.core)
+            implementation(libs.koin.compose.multiplatform)
         }
 
         val jvmMain by creating {
