@@ -12,8 +12,12 @@ internal class AddItemViewModel : ViewModel() {
     private val _showForm = MutableStateFlow<ListItem?>(null)
     val showForm: StateFlow<ListItem?> = _showForm.asStateFlow()
 
-    fun addItem(newItem: ListItem) {
-        val updatedList = _items.value + newItem
+    fun submitClicked(newItem: ListItem) {
+        val updatedList = if (_items.value.any { it.id == newItem.id }) {
+            _items.value.map { if (it.id == newItem.id) newItem else it }
+        } else {
+            _items.value + newItem
+        }
         _items.value = updatedList
         _showForm.value = null
     }

@@ -59,7 +59,7 @@ internal fun DynamicFormScreen(viewModel: AddItemViewModel = koinInject(), onNav
             AddItemForm(
                 item = it,
                 onAddItem = { newItem ->
-                    viewModel.addItem(newItem)
+                    viewModel.submitClicked(newItem)
                 },
                 onDismiss = {
                     viewModel.onDismissDialog()
