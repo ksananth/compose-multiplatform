@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
+import androidx.compose.material.Card
 import androidx.compose.material.Checkbox
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
@@ -30,7 +31,7 @@ import kotlin.random.Random
 
 @Composable
 fun AddItemForm(
-    item : WhatsNew,
+    item: WhatsNew,
     onAddItem: (WhatsNew) -> Unit,
     onDismiss: () -> Unit
 ) {
@@ -64,7 +65,7 @@ fun AddItemForm(
             ) {
                 Text(
                     text = "Add New WhatsNew",
-                    style = MaterialTheme.typography.h6,
+                    style = MaterialTheme.typography.body1,
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
 
@@ -72,133 +73,153 @@ fun AddItemForm(
                     value = itemName,
                     onValueChange = { itemName = it },
                     label = { Text("Name") },
+                    textStyle  = MaterialTheme.typography.body2,
                     modifier = Modifier.fillMaxWidth()
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                Text("Platform", style = MaterialTheme.typography.subtitle1)
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Start,
-                    modifier = Modifier.fillMaxWidth()
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    elevation = 8.dp,
+                    shape = MaterialTheme.shapes.medium
                 ) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Checkbox(
-                            checked = iosChecked,
-                            onCheckedChange = { iosChecked = it }
-                        )
-                        Text("Android", style = MaterialTheme.typography.h6)
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        Text("Platform", style = MaterialTheme.typography.body2)
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Start,
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Checkbox(
+                                    checked = iosChecked,
+                                    onCheckedChange = { iosChecked = it }
+                                )
+                                Text("Android", style = MaterialTheme.typography.caption)
+                            }
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Checkbox(
+                                    checked = androidChecked,
+                                    onCheckedChange = { androidChecked = it }
+                                )
+                                Text("iOS", style = MaterialTheme.typography.caption)
+                            }
+                        }
+
+                        if (androidChecked) {
+                            Spacer(modifier = Modifier.height(8.dp))
+
+                            OutlinedTextField(
+                                textStyle  = MaterialTheme.typography.body2,
+                                value = zeplinSectionNameAndroid,
+                                onValueChange = { zeplinSectionNameAndroid = it },
+                                label = { Text("Zeplin Section Url(Android)") },
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        }
+
+                        if (iosChecked) {
+                            Spacer(modifier = Modifier.height(8.dp))
+
+                            OutlinedTextField(
+                                value = zeplinSectionNameIos,
+                                textStyle  = MaterialTheme.typography.body2,
+                                onValueChange = { zeplinSectionNameIos = it },
+                                label = { Text("Zeplin Section Url(IOS)") },
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        }
                     }
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Checkbox(
-                            checked = androidChecked,
-                            onCheckedChange = { androidChecked = it }
-                        )
-                        Text("iOS", style = MaterialTheme.typography.h6)
-                    }
                 }
-
-                if (androidChecked) {
-                    Spacer(modifier = Modifier.height(8.dp))
-
-                    OutlinedTextField(
-                        value = zeplinSectionNameAndroid,
-                        onValueChange = { zeplinSectionNameAndroid = it },
-                        label = { Text("Zeplin Section Url(Android)") },
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                }
-
-                if (iosChecked) {
-                    Spacer(modifier = Modifier.height(8.dp))
-
-                    OutlinedTextField(
-                        value = zeplinSectionNameIos,
-                        onValueChange = { zeplinSectionNameIos = it },
-                        label = { Text("Zeplin Section Url(IOS)") },
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                }
-
-                Divider(thickness = 1.dp, color = Color.Black, modifier = Modifier.padding(vertical = 8.dp).padding(top = 8.dp))
 
                 Spacer(modifier = Modifier.height(8.dp))
-
-                OutlinedTextField(
-                    value = title,
-                    onValueChange = { title = it },
-                    label = { Text("Title") },
-                    modifier = Modifier.fillMaxWidth()
-                )
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                OutlinedTextField(
-                    value = description,
-                    onValueChange = { description = it },
-                    label = { Text("Description") },
-                    modifier = Modifier.fillMaxWidth()
-                )
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Text("Language", style = MaterialTheme.typography.subtitle1)
-                Row {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Checkbox(
-                            checked = enChecked,
-                            onCheckedChange = { enChecked = it }
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    elevation = 8.dp,
+                    shape = MaterialTheme.shapes.medium
+                ) {
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        OutlinedTextField(
+                            value = title,
+                            textStyle  = MaterialTheme.typography.body2,
+                            onValueChange = { title = it },
+                            label = { Text("Title") },
+                            modifier = Modifier.fillMaxWidth()
                         )
-                        Text("EN", style = MaterialTheme.typography.h6)
-                    }
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Checkbox(
-                            checked = frChecked,
-                            onCheckedChange = { frChecked = it }
-                        )
-                        Text("FR", style = MaterialTheme.typography.h6)
-                    }
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Checkbox(
-                            checked = nlChecked,
-                            onCheckedChange = { nlChecked = it }
-                        )
-                        Text("NL", style = MaterialTheme.typography.h6)
-                    }
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Checkbox(
-                            checked = deChecked,
-                            onCheckedChange = { deChecked = it }
-                        )
-                        Text("DE", style = MaterialTheme.typography.h6)
-                    }
-                }
 
-                Spacer(modifier = Modifier.height(16.dp))
+                        Spacer(modifier = Modifier.height(8.dp))
 
-                Text("Brand", style = MaterialTheme.typography.subtitle1)
-                Row {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Checkbox(
-                            checked = frBrandChecked,
-                            onCheckedChange = { frBrandChecked = it }
+                        OutlinedTextField(
+                            value = description,
+                            textStyle  = MaterialTheme.typography.body2,
+                            onValueChange = { description = it },
+                            label = { Text("Description") },
+                            modifier = Modifier.fillMaxWidth()
                         )
-                        Text("Fortis", style = MaterialTheme.typography.h6)
-                    }
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Checkbox(
-                            checked = knBrandChecked,
-                            onCheckedChange = { knBrandChecked = it }
-                        )
-                        Text("Fintro", style = MaterialTheme.typography.h6)
-                    }
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Checkbox(
-                            checked = hbBrandChecked,
-                            onCheckedChange = { hbBrandChecked = it }
-                        )
-                        Text("Hellobank", style = MaterialTheme.typography.h6)
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        Text("Language", style = MaterialTheme.typography.body2)
+                        Row {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Checkbox(
+                                    checked = enChecked,
+                                    onCheckedChange = { enChecked = it }
+                                )
+                                Text("EN", style = MaterialTheme.typography.caption)
+                            }
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Checkbox(
+                                    checked = frChecked,
+                                    onCheckedChange = { frChecked = it }
+                                )
+                                Text("FR", style = MaterialTheme.typography.caption)
+                            }
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Checkbox(
+                                    checked = nlChecked,
+                                    onCheckedChange = { nlChecked = it }
+                                )
+                                Text("NL", style = MaterialTheme.typography.caption)
+                            }
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Checkbox(
+                                    checked = deChecked,
+                                    onCheckedChange = { deChecked = it }
+                                )
+                                Text("DE", style = MaterialTheme.typography.caption)
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        Text("Brand", style = MaterialTheme.typography.body2)
+                        Row {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Checkbox(
+                                    checked = frBrandChecked,
+                                    onCheckedChange = { frBrandChecked = it }
+                                )
+                                Text("Fortis", style = MaterialTheme.typography.caption)
+                            }
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Checkbox(
+                                    checked = knBrandChecked,
+                                    onCheckedChange = { knBrandChecked = it }
+                                )
+                                Text("Fintro", style = MaterialTheme.typography.caption)
+                            }
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Checkbox(
+                                    checked = hbBrandChecked,
+                                    onCheckedChange = { hbBrandChecked = it }
+                                )
+                                Text("Hellobank", style = MaterialTheme.typography.caption)
+                            }
+                        }
                     }
                 }
 

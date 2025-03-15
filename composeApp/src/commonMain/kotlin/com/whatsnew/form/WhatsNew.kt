@@ -2,7 +2,7 @@ package com.whatsnew.form
 
 import kotlin.random.Random
 
-data class ListItem(
+data class WhatsNew(
     val id: Int,
     val name: String,
     val zeplinSectionUrlAndroid: String,
@@ -14,7 +14,7 @@ data class ListItem(
     val platforms: List<Platform>
 ) {
     companion object {
-        fun empty() = ListItem(
+        fun empty() = WhatsNew(
             Random.nextInt(),
             "",
             "",

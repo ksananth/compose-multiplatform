@@ -48,7 +48,10 @@ internal fun WhatsNewFormScreen(viewModel: AddItemViewModel = koinInject(), onNa
                             .padding(16.dp),
                         contentAlignment = Alignment.Center
                     ) {
-                        Icon(Icons.Default.Add, contentDescription = "Add")
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(Icons.Default.Add, contentDescription = "Add new WhatsNew")
+                            Text("Add new WhatsNew", style = MaterialTheme.typography.caption, modifier = Modifier.padding(start = 8.dp))
+                        }
                     }
                 }
             }
@@ -75,7 +78,7 @@ internal fun WhatsNewFormScreen(viewModel: AddItemViewModel = koinInject(), onNa
     ) {
         com.whatsnew.composables.FloatingActionButton(
             onClick = { onNavigate() },
-            text = "Next",
+            text = "Download",
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .zIndex(1f)
