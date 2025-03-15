@@ -35,12 +35,7 @@ kotlin {
     sourceSets {
 
         val desktopMain by getting
-/*        val wasJsMain by getting { // Use jsMain instead of wasmJsMain
-            dependencies {
-                implementation(compose.html.core) // Use compose.html for Kotlin/JS
-            }
-        }*/
-        
+
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -53,6 +48,24 @@ kotlin {
             implementation(libs.coil3.compose)
             implementation(libs.coil3.network.ktor)
         }
+
+        val jvmMain by creating {
+            dependsOn(commonMain.get())
+            dependencies {
+                // Koin for JVM (desktop)
+                implementation("io.insert-koin:koin-core:3.5.0")
+                implementation("io.insert-koin:koin-compose:1.0.1")
+                implementation("io.insert-koin:koin-core-coroutines:3.5.0")
+            }
+        }
+
+        val wasmJsMain by getting {
+            dependencies {
+                // Add Wasm/JS-specific dependencies here
+            }
+        }
+
+
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutines.swing)
