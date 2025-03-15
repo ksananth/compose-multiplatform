@@ -6,13 +6,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 internal class AddItemViewModel : ViewModel() {
-    private val _items = MutableStateFlow<List<ListItem>>(emptyList())
-    val items: StateFlow<List<ListItem>> = _items.asStateFlow()
+    private val _items = MutableStateFlow<List<WhatsNew>>(emptyList())
+    val items: StateFlow<List<WhatsNew>> = _items.asStateFlow()
 
-    private val _showForm = MutableStateFlow<ListItem?>(null)
-    val showForm: StateFlow<ListItem?> = _showForm.asStateFlow()
+    private val _showForm = MutableStateFlow<WhatsNew?>(null)
+    val showForm: StateFlow<WhatsNew?> = _showForm.asStateFlow()
 
-    fun submitClicked(newItem: ListItem) {
+    fun submitClicked(newItem: WhatsNew) {
         val updatedList = if (_items.value.any { it.id == newItem.id }) {
             _items.value.map { if (it.id == newItem.id) newItem else it }
         } else {
@@ -23,7 +23,7 @@ internal class AddItemViewModel : ViewModel() {
     }
 
     fun onEditClicked(id: Int) {
-        val item: ListItem? = _items.value.find { it.id == id }
+        val item: WhatsNew? = _items.value.find { it.id == id }
         item?.let {
             _showForm.value = it
         }
@@ -38,6 +38,6 @@ internal class AddItemViewModel : ViewModel() {
     }
 
     fun addNewWhatsNew() {
-        _showForm.value = ListItem.empty()
+        _showForm.value = WhatsNew.empty()
     }
 }

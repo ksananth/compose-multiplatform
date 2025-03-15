@@ -30,8 +30,8 @@ import kotlin.random.Random
 
 @Composable
 fun AddItemForm(
-    item : ListItem,
-    onAddItem: (ListItem) -> Unit,
+    item : WhatsNew,
+    onAddItem: (WhatsNew) -> Unit,
     onDismiss: () -> Unit
 ) {
     var itemName by remember { mutableStateOf(item.name) }
@@ -207,7 +207,7 @@ fun AddItemForm(
                 Button(
                     onClick = {
                         if (itemName.isNotBlank()) {
-                            val newItem = ListItem(
+                            val newItem = WhatsNew(
                                 id = item.id,
                                 name = itemName,
                                 zeplinSectionUrlAndroid = zeplinSectionNameAndroid,

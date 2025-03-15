@@ -19,7 +19,7 @@ import com.whatsnew.composables.DoneScreen
 import com.whatsnew.composables.DownloadScreen
 import com.whatsnew.composables.PreviewScreen
 import com.whatsnew.composables.ReleaseScreen
-import com.whatsnew.form.DynamicFormScreen
+import com.whatsnew.form.WhatsNewFormScreen
 
 @Composable
 fun HomeScreen(
@@ -66,7 +66,7 @@ fun HomeScreen(
                         onNavigate = { onNavigate(Step.FORM) },
                     )
 
-                    Step.FORM -> DynamicFormScreen(
+                    Step.FORM -> WhatsNewFormScreen(
                         onNavigate = { onNavigate(Step.PREVIEW) }
                     )
 

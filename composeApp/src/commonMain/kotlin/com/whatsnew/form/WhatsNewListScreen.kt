@@ -18,7 +18,7 @@ import org.koin.compose.koinInject
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-internal fun DynamicFormScreen(viewModel: AddItemViewModel = koinInject(), onNavigate: () -> Unit) {
+internal fun WhatsNewFormScreen(viewModel: AddItemViewModel = koinInject(), onNavigate: () -> Unit) {
     val items by viewModel.items.collectAsState()
     val showForm by viewModel.showForm.collectAsState()
 
@@ -84,7 +84,7 @@ internal fun DynamicFormScreen(viewModel: AddItemViewModel = koinInject(), onNav
 }
 
 @Composable
-internal fun ListItemView(item: ListItem, viewModel: AddItemViewModel) {
+internal fun ListItemView(item: WhatsNew, viewModel: AddItemViewModel) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
