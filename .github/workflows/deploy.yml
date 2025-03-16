@@ -1,4 +1,4 @@
-name: Deploy Compose Multiplatform to GitHub Pages
+name: Deploy Compose Multiplatform (Wasm) to GitHub Pages
 
 on:
   push:
@@ -21,9 +21,9 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      # Step 3: Build the Compose Multiplatform web application
+      # Step 3: Build the Compose Multiplatform WebAssembly application
       - name: Build project
-        run: ./gradlew jsBrowserProductionWebpack
+        run: ./gradlew wasmJsBrowserProductionWebpack
 
       # Step 4: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
