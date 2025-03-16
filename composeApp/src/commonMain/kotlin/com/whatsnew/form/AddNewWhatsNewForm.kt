@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.Card
@@ -25,6 +26,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import kotlin.random.Random
@@ -108,15 +110,15 @@ fun AddItemForm(
                         ) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Checkbox(
-                                    checked = iosChecked,
-                                    onCheckedChange = { iosChecked = it }
+                                    checked = androidChecked,
+                                    onCheckedChange = { androidChecked = it }
                                 )
                                 Text("Android", style = MaterialTheme.typography.caption)
                             }
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Checkbox(
-                                    checked = androidChecked,
-                                    onCheckedChange = { androidChecked = it }
+                                    checked = iosChecked,
+                                    onCheckedChange = { iosChecked = it }
                                 )
                                 Text("iOS", style = MaterialTheme.typography.caption)
                             }
@@ -194,12 +196,13 @@ fun AddItemForm(
                             title = "",
                             description = "",
                             zeplinSectionUrlAndroid = "",
-                            zeplinSectionUrlIos = ""
+                            zeplinSectionUrlIos = "",
+                            delay = 10
                         )
                     },
                     modifier = Modifier.align(Alignment.End)
                 ) {
-                    Text("Add Page")
+                    Text("Add New Page")
                 }
                 Spacer(modifier = Modifier.height(8.dp))
 
@@ -236,6 +239,23 @@ fun AddItemForm(
                                 label = { Text("Description") },
                                 modifier = Modifier.fillMaxWidth()
                             )
+                            Spacer(modifier = Modifier.height(8.dp))
+                            OutlinedTextField(
+                                value = page.delay.toString(), // Ensure that delay is a String
+                                keyboardOptions = KeyboardOptions.Default.copy(
+                                    keyboardType = KeyboardType.Number
+                                ),
+                                textStyle = MaterialTheme.typography.body2,
+                                onValueChange = { newDelay ->
+                                    pages = pages.toMutableList().apply {
+                                        this[index] =
+                                            page.copy(delay = newDelay.toIntOrNull() ?: 10)
+                                    }
+                                },
+                                label = { Text("Delay") },
+                                modifier = Modifier.fillMaxWidth()
+                            )
+
                             Spacer(modifier = Modifier.height(8.dp))
 
                             if (androidChecked) {
@@ -307,7 +327,7 @@ fun AddItemForm(
                     },
                     modifier = Modifier.align(Alignment.End)
                 ) {
-                    Text("Add")
+                    Text("Save")
                 }
             }
         }

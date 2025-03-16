@@ -21,6 +21,7 @@ data class WhatsNew(
             pages = listOf(Page(
                 title = "",
                 description = "",
+                delay = 10,
                 zeplinSectionUrlAndroid = "",
                 zeplinSectionUrlIos = ""
             )),
@@ -34,6 +35,7 @@ data class WhatsNew(
 data class Page(
     val title: String,
     val description: String,
+    val delay: Int,
     val zeplinSectionUrlAndroid: String,
     val zeplinSectionUrlIos: String,
 )

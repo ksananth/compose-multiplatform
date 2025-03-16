@@ -144,10 +144,10 @@ internal fun ListItemView(item: WhatsNew, viewModel: AddItemViewModel) {
                 item.pages.forEachIndexed { index, page ->
                     Text(
                         "Page ${index + 1}",
-                        modifier = Modifier.background(Color.Gray).padding(12.dp),
-                        style = MaterialTheme.typography.body1
+                        modifier = Modifier.background(Color.LightGray).padding(2.dp),
+                        style = MaterialTheme.typography.caption
                     )
-                    Divider(modifier = Modifier.fillMaxWidth(), color = Color.Gray)
+                    Divider(modifier = Modifier.fillMaxWidth(), color = Color.LightGray)
 
                     Text(
                         text = "Title: ${page.title}",
@@ -157,6 +157,12 @@ internal fun ListItemView(item: WhatsNew, viewModel: AddItemViewModel) {
 
                     Text(
                         text = "Description: ${page.description}",
+                        style = MaterialTheme.typography.subtitle1,
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
+
+                    Text(
+                        text = "Description: ${page.delay}",
                         style = MaterialTheme.typography.subtitle1,
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
