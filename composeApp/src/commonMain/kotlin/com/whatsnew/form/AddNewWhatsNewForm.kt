@@ -203,21 +203,21 @@ fun AddItemForm(
                                     checked = frBrandChecked,
                                     onCheckedChange = { frBrandChecked = it }
                                 )
-                                Text("Fortis", style = MaterialTheme.typography.caption)
+                                Text("For", style = MaterialTheme.typography.caption)
                             }
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Checkbox(
                                     checked = knBrandChecked,
                                     onCheckedChange = { knBrandChecked = it }
                                 )
-                                Text("Fintro", style = MaterialTheme.typography.caption)
+                                Text("Fin", style = MaterialTheme.typography.caption)
                             }
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Checkbox(
                                     checked = hbBrandChecked,
                                     onCheckedChange = { hbBrandChecked = it }
                                 )
-                                Text("Hellobank", style = MaterialTheme.typography.caption)
+                                Text("Hell", style = MaterialTheme.typography.caption)
                             }
                         }
                     }

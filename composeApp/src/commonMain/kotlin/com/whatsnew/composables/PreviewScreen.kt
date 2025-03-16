@@ -81,7 +81,7 @@ fun PreviewScreen(onNavigate: () -> Unit) {
 @Composable
 fun ImageGallery() {
     val platforms = listOf("Android", "iOS")
-    val brands = listOf("FORTIS", "FINTRO", "HELLOBANK")
+    val brands = listOf("FOR", "FIN", "HELL")
     val languages = listOf("EN", "FR", "NL", "DE")
 
     var selectedPlatform by remember { mutableStateOf(platforms[0]) }
