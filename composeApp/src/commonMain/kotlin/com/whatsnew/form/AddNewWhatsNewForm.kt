@@ -38,10 +38,6 @@ fun AddItemForm(
     var itemName by remember { mutableStateOf(item.name) }
     var storyTitle by remember { mutableStateOf(item.storyTitle) }
     var storyBadge by remember { mutableStateOf(item.storyBadge) }
-    /*  var zeplinSectionNameAndroid by remember { mutableStateOf(item.zeplinSectionUrlAndroid) }
-      var zeplinSectionNameIos by remember { mutableStateOf(item.zeplinSectionUrlIos) }
-      var title by remember { mutableStateOf(item.title) }
-      var description by remember { mutableStateOf(item.description) }*/
     var pages by remember { mutableStateOf(item.pages) }
 
     var enChecked by remember { mutableStateOf(item.languages.contains(Language.EN)) }
@@ -96,6 +92,7 @@ fun AddItemForm(
                     modifier = Modifier.fillMaxWidth()
                 )
 
+                Spacer(modifier = Modifier.height(16.dp))
                 Card(
                     modifier = Modifier
                         .fillMaxWidth(),
@@ -190,7 +187,7 @@ fun AddItemForm(
                 }
 
                 Spacer(modifier = Modifier.height(8.dp))
-                // Add Page Button
+
                 Button(
                     onClick = {
                         pages = pages + Page(
@@ -275,6 +272,7 @@ fun AddItemForm(
                             }
                         }
                     }
+                    Spacer(modifier = Modifier.height(16.dp))
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))

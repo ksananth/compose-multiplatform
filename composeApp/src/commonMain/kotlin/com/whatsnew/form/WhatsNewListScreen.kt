@@ -1,5 +1,6 @@
 package com.whatsnew.form
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -11,6 +12,7 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import org.koin.compose.koinInject
@@ -18,7 +20,10 @@ import org.koin.compose.koinInject
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-internal fun WhatsNewFormScreen(viewModel: AddItemViewModel = koinInject(), onNavigate: () -> Unit) {
+internal fun WhatsNewFormScreen(
+    viewModel: AddItemViewModel = koinInject(),
+    onNavigate: () -> Unit
+) {
     val items by viewModel.items.collectAsState()
     val showForm by viewModel.showForm.collectAsState()
 
@@ -50,7 +55,11 @@ internal fun WhatsNewFormScreen(viewModel: AddItemViewModel = koinInject(), onNa
                     ) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Icon(Icons.Default.Add, contentDescription = "Add new WhatsNew")
-                            Text("Add new WhatsNew", style = MaterialTheme.typography.caption, modifier = Modifier.padding(start = 8.dp))
+                            Text(
+                                "Add new WhatsNew",
+                                style = MaterialTheme.typography.caption,
+                                modifier = Modifier.padding(start = 8.dp)
+                            )
                         }
                     }
                 }
@@ -105,12 +114,12 @@ internal fun ListItemView(item: WhatsNew, viewModel: AddItemViewModel) {
                 )
                 Text(
                     text = "Story Title: ${item.storyTitle}",
-                    style = MaterialTheme.typography.h6,
+                    style = MaterialTheme.typography.subtitle1,
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
                 Text(
                     text = "Story Badge: ${item.storyBadge}",
-                    style = MaterialTheme.typography.h6,
+                    style = MaterialTheme.typography.subtitle1,
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
 
@@ -132,7 +141,14 @@ internal fun ListItemView(item: WhatsNew, viewModel: AddItemViewModel) {
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
 
-                item.pages.forEach { page->
+                item.pages.forEachIndexed { index, page ->
+                    Text(
+                        "Page ${index + 1}",
+                        modifier = Modifier.background(Color.Gray).padding(12.dp),
+                        style = MaterialTheme.typography.body1
+                    )
+                    Divider(modifier = Modifier.fillMaxWidth(), color = Color.Gray)
+
                     Text(
                         text = "Title: ${page.title}",
                         style = MaterialTheme.typography.subtitle1,
