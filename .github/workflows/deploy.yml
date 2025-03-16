@@ -1,29 +1,34 @@
-name: Deploy to GitHub Pages
+name: Deploy Compose Multiplatform to GitHub Pages
 
 on:
   push:
     branches:
-      - main
+      - main  # Trigger on pushes to the main branch
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Step 2: Set up JDK (required for Kotlin/Compose Multiplatform)
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
 
+      # Step 3: Build the Compose Multiplatform web application
       - name: Build project
         run: ./gradlew jsBrowserProductionWebpack
 
+      # Step 4: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build/distributions
+          publish_dir: build/distributions  # Directory containing the built web app
+          keep_files: false  # Overwrite existing files in the gh-pages branch
