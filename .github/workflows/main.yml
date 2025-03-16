@@ -9,6 +9,10 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
+    # Add permissions for the GITHUB_TOKEN
+    permissions:
+      contents: write  # Allow pushing to the repository
+
     steps:
       # Step 1: Checkout the repository
       - name: Checkout code
