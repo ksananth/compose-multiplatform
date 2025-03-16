@@ -3,7 +3,7 @@ name: Deploy Compose Multiplatform (Wasm) to GitHub Pages
 on:
   push:
     branches:
-      - master  # Trigger on pushes to the main branch
+      - master
 
 jobs:
   build-and-deploy:
@@ -14,21 +14,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up JDK (required for Kotlin/Compose Multiplatform)
+      # Step 2: Set execute permission for gradlew
+      - name: Set execute permission for gradlew
+        run: chmod +x gradlew
+
+      # Step 3: Set up JDK
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      # Step 3: Build the Compose Multiplatform WebAssembly application
+      # Step 4: Build the Compose Multiplatform WebAssembly application
       - name: Build project
         run: ./gradlew wasmJsBrowserProductionWebpack
 
-      # Step 4: Deploy to GitHub Pages
+      # Step 5: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build/distributions  # Directory containing the built web app
-          keep_files: false  # Overwrite existing files in the gh-pages branch
+          publish_dir: build/distributions
+          keep_files: false
