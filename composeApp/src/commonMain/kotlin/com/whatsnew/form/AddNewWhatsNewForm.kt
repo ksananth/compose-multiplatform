@@ -81,6 +81,9 @@ fun AddItemForm(
                 OutlinedTextField(
                     value = storyTitle,
                     onValueChange = { storyTitle = it },
+                    keyboardOptions = KeyboardOptions.Default.copy(
+                        keyboardType = KeyboardType.Number
+                    ),
                     label = { Text("Story Title (multilan id)") },
                     textStyle = MaterialTheme.typography.body2,
                     modifier = Modifier.fillMaxWidth()
@@ -88,6 +91,9 @@ fun AddItemForm(
                 Spacer(modifier = Modifier.height(16.dp))
                 OutlinedTextField(
                     value = storyBadge,
+                    keyboardOptions = KeyboardOptions.Default.copy(
+                        keyboardType = KeyboardType.Number
+                    ),
                     onValueChange = { storyBadge = it },
                     label = { Text("Story Badge (Multilan Id)") },
                     textStyle = MaterialTheme.typography.body2,
@@ -217,6 +223,9 @@ fun AddItemForm(
                             OutlinedTextField(
                                 value = page.title,
                                 textStyle = MaterialTheme.typography.body2,
+                                keyboardOptions = KeyboardOptions.Default.copy(
+                                    keyboardType = KeyboardType.Number
+                                ),
                                 onValueChange = { newTitle ->
                                     pages = pages.toMutableList().apply {
                                         this[index] = page.copy(title = newTitle)
@@ -231,6 +240,9 @@ fun AddItemForm(
                             OutlinedTextField(
                                 value = page.description,
                                 textStyle = MaterialTheme.typography.body2,
+                                keyboardOptions = KeyboardOptions.Default.copy(
+                                    keyboardType = KeyboardType.Number
+                                ),
                                 onValueChange = { newDescription ->
                                     pages = pages.toMutableList().apply {
                                         this[index] = page.copy(description = newDescription)
@@ -241,7 +253,7 @@ fun AddItemForm(
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             OutlinedTextField(
-                                value = page.delay.toString(), // Ensure that delay is a String
+                                value = page.delay.toString(),
                                 keyboardOptions = KeyboardOptions.Default.copy(
                                     keyboardType = KeyboardType.Number
                                 ),

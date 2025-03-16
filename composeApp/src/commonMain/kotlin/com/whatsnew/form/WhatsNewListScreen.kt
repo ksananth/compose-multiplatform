@@ -114,30 +114,30 @@ internal fun ListItemView(item: WhatsNew, viewModel: AddItemViewModel) {
                 )
                 Text(
                     text = "Story Title: ${item.storyTitle}",
-                    style = MaterialTheme.typography.subtitle1,
+                    style = MaterialTheme.typography.subtitle2,
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
                 Text(
                     text = "Story Badge: ${item.storyBadge}",
-                    style = MaterialTheme.typography.subtitle1,
+                    style = MaterialTheme.typography.subtitle2,
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
 
                 Text(
                     text = "Languages: ${item.languages.joinToString(", ")}",
-                    style = MaterialTheme.typography.subtitle1,
+                    style = MaterialTheme.typography.subtitle2,
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
 
                 Text(
                     text = "Brands: ${item.brands.joinToString(", ")}",
-                    style = MaterialTheme.typography.subtitle1,
+                    style = MaterialTheme.typography.subtitle2,
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
 
                 Text(
                     text = "Platforms: ${item.platforms.joinToString(", ")}",
-                    style = MaterialTheme.typography.subtitle1,
+                    style = MaterialTheme.typography.subtitle2,
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
 
@@ -151,31 +151,31 @@ internal fun ListItemView(item: WhatsNew, viewModel: AddItemViewModel) {
 
                     Text(
                         text = "Title: ${page.title}",
-                        style = MaterialTheme.typography.subtitle1,
+                        style = MaterialTheme.typography.caption,
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
 
                     Text(
                         text = "Description: ${page.description}",
-                        style = MaterialTheme.typography.subtitle1,
+                        style = MaterialTheme.typography.caption,
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
 
                     Text(
                         text = "Description: ${page.delay}",
-                        style = MaterialTheme.typography.subtitle1,
+                        style = MaterialTheme.typography.caption,
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
 
                     Text(
                         text = "Zeplin Section Name(Android): ${page.zeplinSectionUrlAndroid}",
-                        style = MaterialTheme.typography.subtitle1,
+                        style = MaterialTheme.typography.caption,
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
 
                     Text(
                         text = "Zeplin Section Name(IOS): ${page.zeplinSectionUrlIos}",
-                        style = MaterialTheme.typography.subtitle1,
+                        style = MaterialTheme.typography.caption,
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
 
