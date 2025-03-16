@@ -36,10 +36,13 @@ fun AddItemForm(
     onDismiss: () -> Unit
 ) {
     var itemName by remember { mutableStateOf(item.name) }
-    var zeplinSectionNameAndroid by remember { mutableStateOf(item.zeplinSectionUrlAndroid) }
-    var zeplinSectionNameIos by remember { mutableStateOf(item.zeplinSectionUrlIos) }
-    var title by remember { mutableStateOf(item.title) }
-    var description by remember { mutableStateOf(item.description) }
+    var storyTitle by remember { mutableStateOf(item.storyTitle) }
+    var storyBadge by remember { mutableStateOf(item.storyBadge) }
+    /*  var zeplinSectionNameAndroid by remember { mutableStateOf(item.zeplinSectionUrlAndroid) }
+      var zeplinSectionNameIos by remember { mutableStateOf(item.zeplinSectionUrlIos) }
+      var title by remember { mutableStateOf(item.title) }
+      var description by remember { mutableStateOf(item.description) }*/
+    var pages by remember { mutableStateOf(item.pages) }
 
     var enChecked by remember { mutableStateOf(item.languages.contains(Language.EN)) }
     var frChecked by remember { mutableStateOf(item.languages.contains(Language.FR)) }
@@ -72,12 +75,26 @@ fun AddItemForm(
                 OutlinedTextField(
                     value = itemName,
                     onValueChange = { itemName = it },
-                    label = { Text("Name") },
-                    textStyle  = MaterialTheme.typography.body2,
+                    label = { Text("Story Name") },
+                    textStyle = MaterialTheme.typography.body2,
                     modifier = Modifier.fillMaxWidth()
                 )
-
                 Spacer(modifier = Modifier.height(16.dp))
+                OutlinedTextField(
+                    value = storyTitle,
+                    onValueChange = { storyTitle = it },
+                    label = { Text("Story Title (multilan id)") },
+                    textStyle = MaterialTheme.typography.body2,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                OutlinedTextField(
+                    value = storyBadge,
+                    onValueChange = { storyBadge = it },
+                    label = { Text("Story Badge (Multilan Id)") },
+                    textStyle = MaterialTheme.typography.body2,
+                    modifier = Modifier.fillMaxWidth()
+                )
 
                 Card(
                     modifier = Modifier
@@ -107,58 +124,6 @@ fun AddItemForm(
                                 Text("iOS", style = MaterialTheme.typography.caption)
                             }
                         }
-
-                        if (androidChecked) {
-                            Spacer(modifier = Modifier.height(8.dp))
-
-                            OutlinedTextField(
-                                textStyle  = MaterialTheme.typography.body2,
-                                value = zeplinSectionNameAndroid,
-                                onValueChange = { zeplinSectionNameAndroid = it },
-                                label = { Text("Zeplin Section Url(Android)") },
-                                modifier = Modifier.fillMaxWidth()
-                            )
-                        }
-
-                        if (iosChecked) {
-                            Spacer(modifier = Modifier.height(8.dp))
-
-                            OutlinedTextField(
-                                value = zeplinSectionNameIos,
-                                textStyle  = MaterialTheme.typography.body2,
-                                onValueChange = { zeplinSectionNameIos = it },
-                                label = { Text("Zeplin Section Url(IOS)") },
-                                modifier = Modifier.fillMaxWidth()
-                            )
-                        }
-                    }
-                }
-
-                Spacer(modifier = Modifier.height(8.dp))
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    elevation = 8.dp,
-                    shape = MaterialTheme.shapes.medium
-                ) {
-                    Column(modifier = Modifier.padding(16.dp)) {
-                        OutlinedTextField(
-                            value = title,
-                            textStyle  = MaterialTheme.typography.body2,
-                            onValueChange = { title = it },
-                            label = { Text("Title") },
-                            modifier = Modifier.fillMaxWidth()
-                        )
-
-                        Spacer(modifier = Modifier.height(8.dp))
-
-                        OutlinedTextField(
-                            value = description,
-                            textStyle  = MaterialTheme.typography.body2,
-                            onValueChange = { description = it },
-                            label = { Text("Description") },
-                            modifier = Modifier.fillMaxWidth()
-                        )
 
                         Spacer(modifier = Modifier.height(16.dp))
 
@@ -220,6 +185,95 @@ fun AddItemForm(
                                 Text("Hell", style = MaterialTheme.typography.caption)
                             }
                         }
+
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+                // Add Page Button
+                Button(
+                    onClick = {
+                        pages = pages + Page(
+                            title = "",
+                            description = "",
+                            zeplinSectionUrlAndroid = "",
+                            zeplinSectionUrlIos = ""
+                        )
+                    },
+                    modifier = Modifier.align(Alignment.End)
+                ) {
+                    Text("Add Page")
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+
+                pages.forEachIndexed { index, page ->
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        elevation = 8.dp,
+                        shape = MaterialTheme.shapes.medium
+                    ) {
+                        Column(modifier = Modifier.padding(16.dp)) {
+                            OutlinedTextField(
+                                value = page.title,
+                                textStyle = MaterialTheme.typography.body2,
+                                onValueChange = { newTitle ->
+                                    pages = pages.toMutableList().apply {
+                                        this[index] = page.copy(title = newTitle)
+                                    }
+                                },
+                                label = { Text("Title") },
+                                modifier = Modifier.fillMaxWidth()
+                            )
+
+                            Spacer(modifier = Modifier.height(8.dp))
+
+                            OutlinedTextField(
+                                value = page.description,
+                                textStyle = MaterialTheme.typography.body2,
+                                onValueChange = { newDescription ->
+                                    pages = pages.toMutableList().apply {
+                                        this[index] = page.copy(description = newDescription)
+                                    }
+                                },
+                                label = { Text("Description") },
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                            Spacer(modifier = Modifier.height(8.dp))
+
+                            if (androidChecked) {
+                                Spacer(modifier = Modifier.height(8.dp))
+
+                                OutlinedTextField(
+                                    textStyle = MaterialTheme.typography.body2,
+                                    value = page.zeplinSectionUrlAndroid,
+                                    onValueChange = { newUrl ->
+                                        pages = pages.toMutableList().apply {
+                                            this[index] =
+                                                page.copy(zeplinSectionUrlAndroid = newUrl)
+                                        }
+                                    },
+                                    label = { Text("Zeplin Section Url(Android)") },
+                                    modifier = Modifier.fillMaxWidth()
+                                )
+                            }
+
+                            if (iosChecked) {
+                                Spacer(modifier = Modifier.height(8.dp))
+
+                                OutlinedTextField(
+                                    value = page.zeplinSectionUrlIos,
+                                    textStyle = MaterialTheme.typography.body2,
+                                    onValueChange = { newUrl ->
+                                        pages = pages.toMutableList().apply {
+                                            this[index] = page.copy(zeplinSectionUrlIos = newUrl)
+                                        }
+                                    },
+                                    label = { Text("Zeplin Section Url(IOS)") },
+                                    modifier = Modifier.fillMaxWidth()
+                                )
+                            }
+                        }
                     }
                 }
 
@@ -231,10 +285,8 @@ fun AddItemForm(
                             val newItem = WhatsNew(
                                 id = item.id,
                                 name = itemName,
-                                zeplinSectionUrlAndroid = zeplinSectionNameAndroid,
-                                zeplinSectionUrlIos = zeplinSectionNameAndroid,
-                                title = title,
-                                description = description,
+                                storyTitle = storyTitle,
+                                storyBadge = storyBadge,
                                 languages = listOfNotNull(
                                     if (enChecked) Language.EN else null,
                                     if (frChecked) Language.FR else null,
@@ -249,7 +301,8 @@ fun AddItemForm(
                                 platforms = listOfNotNull(
                                     if (iosChecked) Platform.IOS else null,
                                     if (androidChecked) Platform.ANDROID else null
-                                )
+                                ),
+                                pages = pages
                             )
                             onAddItem(newItem)
                         }

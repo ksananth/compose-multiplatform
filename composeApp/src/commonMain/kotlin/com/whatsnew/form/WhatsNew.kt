@@ -5,10 +5,9 @@ import kotlin.random.Random
 data class WhatsNew(
     val id: Int,
     val name: String,
-    val zeplinSectionUrlAndroid: String,
-    val zeplinSectionUrlIos: String,
-    val title: String,
-    val description: String,
+    val storyTitle: String,
+    val storyBadge: String,
+    val pages: List<Page>,
     val languages: List<Language>,
     val brands: List<Brand>,
     val platforms: List<Platform>
@@ -16,17 +15,28 @@ data class WhatsNew(
     companion object {
         fun empty() = WhatsNew(
             Random.nextInt(),
-            "",
-            "",
-            "",
-            "",
-            "",
-            Language.entries,
-            Brand.entries,
-            Platform.entries
+            name = "",
+            storyTitle = "",
+            storyBadge = "",
+            pages = listOf(Page(
+                title = "",
+                description = "",
+                zeplinSectionUrlAndroid = "",
+                zeplinSectionUrlIos = ""
+            )),
+            languages = Language.entries,
+            brands = Brand.entries,
+            platforms = Platform.entries
         )
     }
 }
+
+data class Page(
+    val title: String,
+    val description: String,
+    val zeplinSectionUrlAndroid: String,
+    val zeplinSectionUrlIos: String,
+)
 
 enum class Brand {
     FR, KN, HB

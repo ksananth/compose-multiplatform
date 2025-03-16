@@ -103,22 +103,14 @@ internal fun ListItemView(item: WhatsNew, viewModel: AddItemViewModel) {
                     style = MaterialTheme.typography.h6,
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
-
                 Text(
-                    text = "Zeplin Section Name: ${item.zeplinSectionUrlAndroid}",
-                    style = MaterialTheme.typography.subtitle1,
+                    text = "Story Title: ${item.storyTitle}",
+                    style = MaterialTheme.typography.h6,
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
-
                 Text(
-                    text = "Title: ${item.title}",
-                    style = MaterialTheme.typography.subtitle1,
-                    modifier = Modifier.padding(bottom = 8.dp)
-                )
-
-                Text(
-                    text = "Description: ${item.description}",
-                    style = MaterialTheme.typography.subtitle1,
+                    text = "Story Badge: ${item.storyBadge}",
+                    style = MaterialTheme.typography.h6,
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
 
@@ -139,6 +131,33 @@ internal fun ListItemView(item: WhatsNew, viewModel: AddItemViewModel) {
                     style = MaterialTheme.typography.subtitle1,
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
+
+                item.pages.forEach { page->
+                    Text(
+                        text = "Title: ${page.title}",
+                        style = MaterialTheme.typography.subtitle1,
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
+
+                    Text(
+                        text = "Description: ${page.description}",
+                        style = MaterialTheme.typography.subtitle1,
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
+
+                    Text(
+                        text = "Zeplin Section Name(Android): ${page.zeplinSectionUrlAndroid}",
+                        style = MaterialTheme.typography.subtitle1,
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
+
+                    Text(
+                        text = "Zeplin Section Name(IOS): ${page.zeplinSectionUrlIos}",
+                        style = MaterialTheme.typography.subtitle1,
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
+
+                }
             }
 
 
