@@ -31,7 +31,7 @@ fun HomeScreen(
             modifier = Modifier
                 .weight(1f)
                 .fillMaxHeight()
-                .background(primary),
+                .background(lightBlack),
             contentAlignment = Alignment.Center
         ) {
             Column {
@@ -54,7 +54,7 @@ fun HomeScreen(
             modifier = Modifier
                 .weight(2f)
                 .fillMaxHeight()
-                .background(Color.White),
+                .background(primary),
             contentAlignment = Alignment.Center
         ) {
             Crossfade(

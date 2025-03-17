@@ -11,4 +11,5 @@ val PrimaryTextColor = Color(0xFF333333) // Dark gray for primary text
 val SecondaryTextColor = Color(0xFF666666) // Light gray for secondary text
 val AccentColor = Color(0xFF0076FF) // Vibrant blue for buttons and highlights
 val ButtonTextColor = Color(0xFFFFFFFF) // White text for buttons
-val primary = Color(0xFF1D2837)
+val primary = Color(0xFF1a1b1d)
+val lightBlack = Color(0xFF222126)
