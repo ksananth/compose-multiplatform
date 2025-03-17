@@ -1,5 +1,6 @@
 package com.whatsnew.form
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,6 +28,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import lightBlack
+import primary
 
 @Composable
 fun AddItemForm(
@@ -55,7 +58,7 @@ fun AddItemForm(
     Dialog(onDismissRequest = onDismiss) {
         Surface(
             shape = MaterialTheme.shapes.medium,
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp).background(primary)
         ) {
             val scrollState = rememberScrollState()
 
@@ -101,7 +104,7 @@ fun AddItemForm(
                 Spacer(modifier = Modifier.height(16.dp))
                 Card(
                     modifier = Modifier
-                        .fillMaxWidth(),
+                        .fillMaxWidth().background(lightBlack),
                     elevation = 8.dp,
                     shape = MaterialTheme.shapes.medium
                 ) {
@@ -213,7 +216,7 @@ fun AddItemForm(
                 pages.forEachIndexed { index, page ->
                     Card(
                         modifier = Modifier
-                            .fillMaxWidth(),
+                            .fillMaxWidth().background(lightBlack),
                         elevation = 8.dp,
                         shape = MaterialTheme.shapes.medium
                     ) {

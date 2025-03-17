@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import lightBlack
 import org.koin.compose.koinInject
 
 
@@ -42,6 +43,7 @@ internal fun WhatsNewFormScreen(
             item {
                 Card(
                     modifier = Modifier
+                        .background(lightBlack)
                         .fillMaxWidth()
                         .padding(8.dp),
                     elevation = 4.dp,
@@ -54,9 +56,10 @@ internal fun WhatsNewFormScreen(
                         contentAlignment = Alignment.Center
                     ) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
-                            Icon(Icons.Default.Add, contentDescription = "Add new WhatsNew")
+                            Icon(Icons.Default.Add, contentDescription = "Add new WhatsNew", tint = Color.White)
                             Text(
                                 "Add new WhatsNew",
+                                color = Color.White,
                                 style = MaterialTheme.typography.caption,
                                 modifier = Modifier.padding(start = 8.dp)
                             )
