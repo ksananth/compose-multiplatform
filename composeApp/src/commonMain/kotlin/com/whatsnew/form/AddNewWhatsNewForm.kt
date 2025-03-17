@@ -51,6 +51,7 @@ fun AddItemForm(
     var iosChecked by remember { mutableStateOf(item.platforms.contains(Platform.IOS)) }
     var androidChecked by remember { mutableStateOf(item.platforms.contains(Platform.ANDROID)) }
 
+
     Dialog(onDismissRequest = onDismiss) {
         Surface(
             shape = MaterialTheme.shapes.medium,
